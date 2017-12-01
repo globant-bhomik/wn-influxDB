@@ -14,4 +14,4 @@ RUN cd /var &&\
 COPY influxdb.conf /var/database/influxdb-${INFLUXDB_VERSION}-1/etc/influxdb.conf
 ENV PATH "/var/database/influxdb-${INFLUXDB_VERSION}-1/usr/bin/:${PATH}"
 WORKDIR /var/database/influxdb-${INFLUXDB_VERSION}-1/usr/bin/
-CMD ./influxd
+CMD ./influxd -config /var/database/influxdb-${INFLUXDB_VERSION}-1/etc/influxdb.conf
