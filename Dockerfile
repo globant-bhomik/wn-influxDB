@@ -13,6 +13,5 @@ RUN cd /var &&\
     
 COPY influxdb.conf /etc/influxdb/influxdb.conf
 ENV PATH "/var/database/influxdb-${INFLUXDB_VERSION}-1/usr/bin/:${PATH}"
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x entrypoint.sh
-CMD ["/entrypoint.sh"]
+WORKDIR /var/database/influxdb-${INFLUXDB_VERSION}-1/usr/bin/
+CMD ./influxd
