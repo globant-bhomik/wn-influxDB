@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk
 
 ENV INFLUXDB_VERSION 1.2.2
-RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
 RUN cd /var &&\
 	mkdir -p -v database &&\
 	cd /var/database &&\
@@ -11,7 +11,7 @@ RUN cd /var &&\
 	rm -rf *.tar.gz &&\
 	chmod +x /var/database/influxdb-${INFLUXDB_VERSION}-1/usr/bin/*
     
-COPY influxdb.conf /etc/influxdb/influxdb.conf
+COPY influxdb.conf /var/database/influxdb-${INFLUXDB_VERSION}-1/etc/influxdb.conf
 ENV PATH "/var/database/influxdb-${INFLUXDB_VERSION}-1/usr/bin/:${PATH}"
 WORKDIR /var/database/influxdb-${INFLUXDB_VERSION}-1/usr/bin/
-CMD ./influxd -config /etc/influxdb/influxdb.conf
+CMD ./influxd
